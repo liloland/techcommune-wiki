@@ -1,0 +1,36 @@
+# TechCommune community wiki: site settings (read by tools/build.py)
+title = "TechCommune Wiki"
+tagline = "Fixes, tips and war stories from people who have been there."
+# Where the main TechCommune pages live, as seen from the wiki pages. "/" works when the wiki is served at techcommune.org/wiki/.
+site_url = "/"
+# The public Git repository that holds this wiki (used for the "Improve this page" links). PLACEHOLDER until the repo exists.
+repo_url = "https://github.com/liloland/techcommune-wiki"
+repo_branch = "main"
+license_name = "CC BY-SA 4.0"
+license_url = "https://creativecommons.org/licenses/by-sa/4.0/"
+
+# Category order is the order shown on the wiki home page.
+[[categories]]
+slug = "about"
+title = "Start here"
+blurb = "How the wiki works and how to add to it."
+
+[[categories]]
+slug = "fixes"
+title = "Fixes"
+blurb = "Something broke, and here is what worked."
+
+[[categories]]
+slug = "tips"
+title = "Tips"
+blurb = "Small things that save time."
+
+[[categories]]
+slug = "experiences"
+title = "Experiences"
+blurb = "War stories and lessons learned."
+
+[[categories]]
+slug = "ideas"
+title = "Ideas"
+blurb = "Things worth trying, and questions worth discussing."

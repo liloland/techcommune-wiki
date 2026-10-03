@@ -1,0 +1,27 @@
+/* TechCommune wiki: extra styles on top of the main site's style.css (kept in a file so the strict CSP applies). */
+.wiki-meta { color: var(--text-muted); font-size: 0.88rem; margin: -6px 0 10px; }
+.wiki-summary { font-size: 1.08rem; color: var(--text); border-left: 3px solid var(--accent); padding-left: 14px; margin: 14px 0 22px; }
+.wiki-body h2 { margin-top: 1.6em; }
+.wiki-body h3 { margin-top: 1.3em; }
+.wiki-body ul, .wiki-body ol { max-width: 78ch; }
+.wiki-body li { margin: 0.35em 0; }
+.wiki-body blockquote { margin: 16px 0; padding: 4px 16px; max-width: 78ch; border-left: 3px solid var(--border); color: var(--text-muted); background: var(--surface); border-radius: 0 var(--radius) var(--radius) 0; }
+.wiki-body blockquote p { margin: 0.5em 0; }
+.wiki-table { overflow-x: auto; margin: 16px 0; border: 1px solid var(--border); border-radius: 10px; }
+.wiki-table table { border-collapse: collapse; width: 100%; font-size: 0.92rem; }
+.wiki-table th, .wiki-table td { text-align: left; padding: 8px 12px; border-bottom: 1px solid var(--border); vertical-align: top; }
+.wiki-table th { background: var(--surface-2); color: var(--heading); }
+.wiki-table tr:last-child td { border-bottom: 0; }
+.wiki-tags { margin: 18px 0 6px; }
+.wiki-actions { display: flex; flex-wrap: wrap; gap: 10px; margin: 22px 0; }
+.wiki-actions.center { justify-content: center; }
+.wiki-btn { display: inline-block; padding: 8px 16px; border: 1px solid var(--border); border-radius: 999px; background: var(--surface); color: var(--text); font-weight: 600; font-size: 0.9rem; text-decoration: none; }
+.wiki-btn:hover { border-color: var(--accent); color: var(--heading); }
+.wiki-list { list-style: none; padding: 0; margin: 10px 0 24px; max-width: none; }
+.wiki-list li { margin: 8px 0; padding: 10px 14px; border: 1px solid var(--border); border-radius: 10px; background: var(--surface); }
+.wiki-list a { font-weight: 700; }
+.wiki-sum { color: var(--text-muted); }
+.wiki-cat { color: inherit; text-decoration: none; }
+.wiki-cat:hover { color: var(--accent); }
+.wiki-license { color: var(--text-muted); font-size: 0.82rem; text-align: center; max-width: 70ch; margin-left: auto; margin-right: auto; }
+@media print { .wiki-actions { display: none; } }

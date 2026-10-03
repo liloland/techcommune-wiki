@@ -1,0 +1,29 @@
+name: Suggest a page or topic
+description: You have an idea for the wiki but do not want to write it yourself.
+labels: ["suggestion"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks! Please search the wiki and the main site first. This is not the place for support requests.
+  - type: dropdown
+    id: kind
+    attributes:
+      label: What kind of page?
+      options: [Fix, Tip, Experience, Idea]
+    validations:
+      required: true
+  - type: textarea
+    id: what
+    attributes:
+      label: What should the page cover?
+      description: A few sentences. Do not include passwords, secrets or real people's names.
+    validations:
+      required: true
+  - type: checkboxes
+    id: checked
+    attributes:
+      label: Before you submit
+      options:
+        - label: I searched the wiki and the main site, and this is not already covered
+          required: true

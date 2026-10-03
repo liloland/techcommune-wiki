@@ -1,0 +1,5 @@
+blank_issues_enabled: false
+contact_links:
+  - name: Report something that should not be on the wiki
+    url: https://techcommune.org/contact.html
+    about: Use the site contact form for anything sensitive, so it is not posted publicly.
