@@ -1,6 +1,6 @@
 ---
 title: Wanted - what the wiki would like to hear about
-category: ideas
+category: help
 summary: A list of prompts to get you started, for when you are not sure what to write.
 date: 2026-10-03
 author: TechCommune
