@@ -16,7 +16,7 @@ Not sure what to add? Here are some prompts. Check the [wiki search](wiki:search
 - An upgrade that went wrong, and how you recovered
 
 ## Tips
-
+hello world
 - A command or flag you wish you had known years earlier
 - A shell alias or small script you use every day
 - A better way to do something the main site shows the long way
