@@ -5,7 +5,7 @@
   python3 tools/build.py --check                            only check every page (this is what the pull-request check runs)
   python3 tools/build.py --site ~/modern --out build --release   also refuse placeholder settings (use before publishing)
 
---site is a copy of the main TechCommune site: its style.css, search.js, search.css and icons are copied so the wiki
+--site is a copy of the main TechCommune site: its style.css, search.js, search.css, the two logo files and icons are copied so the wiki
 folder is self-contained (the site's Content-Security-Policy only allows files from the same origin).
 """
 import argparse
@@ -218,7 +218,9 @@ def head(cfg, title, extra_css=()):
 
 
 def nav(cfg, active):
-    out = ['        <div class="tabs">']
+    out = ['        <div class="tabs tabs-logo">',
+           '            <a class="tab-logo" href="%s"><picture><source media="(prefers-color-scheme: light)" srcset="logo-nav-light.svg">'
+           '<img src="logo-nav-dark.svg" alt="TechCommune.org home" width="230" height="49"></picture></a>' % esc(cfg['site_url'] + 'index.html')]
     for item in NAV:
         if item is None:
             out.append('            <span class="tabs-break"></span>')
@@ -379,7 +381,7 @@ def build(root, site, out, check_only=False, release=False):
     errors = [p for p in problems if p.error]
     if check_only or errors:
         return problems, good
-    needed = ['style.css', 'search.js', 'search.css']
+    needed = ['style.css', 'search.js', 'search.css', 'logo-nav-dark.svg', 'logo-nav-light.svg']
     for n in needed:
         if not os.path.exists(os.path.join(site, n)):
             problems.append(Problem('--site', None, 'the site folder %s has no %s' % (site, n)))
