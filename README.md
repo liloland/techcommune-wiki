@@ -33,9 +33,11 @@ python3 tools/build.py --site ~/modern --out build --release   # same, but refus
 
 ## Publishing (after a merge)
 
-1. `git pull`, then build with `--release`.
-2. Test the build locally (open `build/index.html` through a local web server).
-3. Copy `build/` into `/var/www/wiki/public/` on the server (the deploy account writes it).
+1. Mount the server's web folder read-write with sshfs (without `default_permissions`), and `git pull` on `main`.
+2. Dry run: `tools/deploy.sh` runs the tests and the page check, builds with `--release`, and lists what would change on the server.
+3. Publish: `tools/deploy.sh --go` copies only the changed files into `~/server-www/wiki/public/`, verifies the copy byte for byte and checks the live pages.
+
+The script refuses to run when the repository has uncommitted changes, is not on `main`, or is out of step with GitHub, so what is published is always exactly what is public. The one-time server setup (folder, nginx location) is in `NGINX-wiki.txt`, kept with the other server instructions.
 
 ## Before the first publish
 
