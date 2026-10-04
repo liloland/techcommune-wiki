@@ -136,7 +136,7 @@ class Pages(unittest.TestCase):
         os.makedirs(os.path.join(self.root, 'content'))
         self.site = os.path.join(self.tmp, 'site')
         os.makedirs(self.site)
-        for n in ('style.css', 'search.js', 'search.css'):
+        for n in ('style.css', 'search.js', 'search.css', 'logo-nav-dark.svg', 'logo-nav-light.svg'):
             with open(os.path.join(self.site, n), 'w') as f:
                 f.write('/* stub */')
 
@@ -235,6 +235,18 @@ class Pages(unittest.TestCase):
             h = f.read()
         for bad in ('<img src=x', '<script>x', '<b>me', 'onmouseover="b'):
             self.assertNotIn(bad, h)
+
+    def test_logo_in_the_tab_bar_and_files_copied(self):
+        self.add('good-page.md', self.GOOD)
+        self.run_build()
+        out = os.path.join(self.tmp, 'out')
+        with open(os.path.join(out, 'good-page.html')) as f:
+            h = f.read()
+        self.assertIn('<div class="tabs tabs-logo">', h)
+        self.assertIn('srcset="logo-nav-light.svg"', h)
+        self.assertIn('src="logo-nav-dark.svg"', h)
+        self.assertTrue(os.path.exists(os.path.join(out, 'logo-nav-dark.svg')))
+        self.assertTrue(os.path.exists(os.path.join(out, 'logo-nav-light.svg')))
 
     def test_repo_links(self):
         self.add('good-page.md', self.GOOD)
