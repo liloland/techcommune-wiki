@@ -33,7 +33,7 @@ SECRET_PATTERNS = [
     (re.compile(r'(?i)\b(password|passwd|secret|api[_-]?key|token)\s*[:=]\s*[\'"]?(?!<|\$|\{|your|changeme|example|xxx|\*)[^\s\'"]{8,}'),
      'looks like a real password or token (use a placeholder such as <password>)'),
 ]
-NAV = [('index.html', 'Home'), ('command-line.html', 'Command Line Tips'), ('cloud-tutorials.html', 'Cloud Tutorials'),
+NAV = [('index.html', 'Home'), ('linux-101.html', 'Linux 101'), ('command-line.html', 'Command Line Tips'), ('cloud-tutorials.html', 'Cloud Tutorials'),
        ('ai.html', 'AI'), ('shell-scripts.html', 'Shell Scripting'), ('sysadmin.html', 'Sysadmin'), ('devops.html', 'DevOps'),
        None,
        ('security.html', 'Security'), ('hardening.html', 'Hardening'), ('tools.html', 'Tools'),
