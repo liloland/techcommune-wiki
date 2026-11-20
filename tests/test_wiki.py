@@ -248,6 +248,20 @@ class Pages(unittest.TestCase):
         self.assertTrue(os.path.exists(os.path.join(out, 'logo-nav-dark.svg')))
         self.assertTrue(os.path.exists(os.path.join(out, 'logo-nav-light.svg')))
 
+    def test_grouped_nav_from_site(self):
+        with open(os.path.join(self.site, 'nav-wiki.inc'), 'w') as f:
+            f.write('<nav class="nv" aria-label="Main" data-active="wiki/"><a class="nv-logo" href="{SITE_URL}index.html">x</a>'
+                    '<a class="nv-k on" href="{SITE_URL}wiki/" aria-current="page">Wiki</a></nav>\n')
+        self.add('good-page.md', self.GOOD)
+        self.run_build()
+        with open(os.path.join(self.tmp, 'out', 'good-page.html')) as f:
+            h = f.read()
+        self.assertIn('<nav class="nv"', h)
+        self.assertNotIn('{SITE_URL}', h)
+        self.assertNotIn('<div class="tabs tabs-logo">', h)
+        self.assertIn('href="/nav.css"', h)
+        self.assertIn('<script src="/nav.js" defer></script>', h)
+
     def test_repo_links(self):
         self.add('good-page.md', self.GOOD)
         self.run_build()

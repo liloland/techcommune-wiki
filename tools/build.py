@@ -201,6 +201,8 @@ def render_pages(pages, cfg, problems):
 # ---- HTML -------------------------------------------------------------------------------------------------------------
 def head(cfg, title, extra_css=()):
     css = ''.join('\n    <link rel="stylesheet" href="%s">' % c for c in ('style.css', 'wiki.css') + tuple(extra_css))
+    if cfg.get('nav_inc'):   # the main site's grouped nav: its stylesheet and script are served by the main site
+        css += '\n    <link rel="stylesheet" href="%s">\n    <script src="%s" defer></script>' % (esc(cfg['site_url'] + 'nav.css'), esc(cfg['site_url'] + 'nav.js'))
     return f'''<!DOCTYPE html>
 <html lang="en">
 <head>
@@ -218,6 +220,8 @@ def head(cfg, title, extra_css=()):
 
 
 def nav(cfg, active):
+    if cfg.get('nav_inc'):   # nav-wiki.inc from the --site folder (written by the main site's apply_nav.py): the same grouped nav as every site page
+        return '        ' + cfg['nav_inc'].replace('{SITE_URL}', cfg['site_url']) + '\n'
     out = ['        <div class="tabs tabs-logo">',
            '            <a class="tab-logo" href="%s"><picture><source media="(prefers-color-scheme: light)" srcset="logo-nav-light.svg">'
            '<img src="logo-nav-dark.svg" alt="TechCommune.org home" width="230" height="49"></picture></a>' % esc(cfg['site_url'] + 'index.html')]
@@ -373,6 +377,10 @@ def search_index(cfg, pages):
 def build(root, site, out, check_only=False, release=False):
     problems = []
     cfg = load_config(root)
+    inc = os.path.join(site, 'nav-wiki.inc')   # optional: when present the wiki uses the main site's grouped nav, else the classic tab bar
+    if os.path.exists(inc):
+        with open(inc, encoding='utf-8') as f:
+            cfg['nav_inc'] = f.read().strip()
     if release and ('OWNER' in cfg['repo_url'] or cfg['repo_url'].count('/') < 4):
         problems.append(Problem('wiki.toml', None, 'repo_url is still a placeholder: set it to the real public repository before publishing'))
     pages = load_pages(root, cfg, problems)
